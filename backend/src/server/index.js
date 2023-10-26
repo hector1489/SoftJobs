@@ -1,4 +1,4 @@
-require('dontev').config()
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const { jwtSign } = require('../utils/jwt')
@@ -21,9 +21,9 @@ app.use(express.json())
 app.post('/login', (req, res) => {
     verifyCredentials(req.body.email, req.body.password)
         .then((user) => {
-            user.length < 0
+            user.length > 0
                 ? res.status(200).json({ token: jwtSign({ email: req.body.email }) })
-                : res.status(400).json({ code: 404, message: 'Resource not found' })
+                : res.status(400).json({ code: 404, message: 'Resource not found.' })
         })
         .catch((error) => res.status(500).json(error))
 })

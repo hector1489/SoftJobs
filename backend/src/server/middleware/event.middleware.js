@@ -1,7 +1,7 @@
 const { jwtVerify } = require('../../utils/jwt')
 
 const verifyToken = (req, res, next) => {
-    const authorizationHeader = req.headers.authorizationHeader
+    const authorizationHeader = req.headers.authorization
     if (!authorizationHeader) {
         return res.status(401).json({
             code: 401,
@@ -13,13 +13,13 @@ const verifyToken = (req, res, next) => {
     if (bearer !== 'Bearer' || !token) {
         return res.status(401).json({
             code: 401,
-            message: 'Fromato de token invalido.'
+            message: 'Formato de token invalido.'
         })
     }
 
     try {
         jwtVerify(token) && next()
-    }   catch (error) {
+    } catch (error) {
         return res.status(401).json({
             code: 401,
             message: 'Token invalido.'
