@@ -7,7 +7,7 @@ const config = {
     host: process.env.PG_HOST,
     port: process.env.PG_PORT,
     database: process.env.PG_DATABASE,
-    allowExistOnIdle: true
+    allowExitOnIdle: true
 }
 
 const pool = new Pool(config)
