@@ -2,9 +2,12 @@
 
 
 ## Proyecto Frontend
-
+## Autor
+-Proyecto Frontend [rafariass](https://github.com/rafariass).Desafio de apoyo para g32 Desafio Latam.
 
 ## Proyecto Backend
+## Autor
+- Proyecto Backend [hgonzalez](https://github.com/hector1489)
 
 ![javascript](https://img.shields.io/badge/javascript-gray?style=flat&logo=javascript&logoColor=white&color=F7DF1E)
 ![nodes](https://img.shields.io/badge/node-v18.16.0-gray?style=flat&logo=node.js&logoColor=white&color=339933)
@@ -15,14 +18,6 @@
 ![postgresql](https://img.shields.io/badge/pg-v8.11.3-gray?style=flat&logo=postgresql&logoColor=white&color=4169E1)
 ![uuid](https://img.shields.io/badge/uuid-v9.0.1-gray?style=flatd&color=338ee6)
 ![cors](https://img.shields.io/badge/cors-v2.8.5-gray?style=flatd&color=000000)
-
-
-
-
-
-
-## Autor
-- Proyecto Frontend [hgonzalez](https://github.com/hector1489)
 
 
 ## Requisitos antes de la instalación

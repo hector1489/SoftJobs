@@ -6,7 +6,7 @@ const { verifyToken } = require('./middleware/event.middleware')
 const { verifyCredentials } = require('./models/Usuarios.dao')
 const {
     findUsuarios,
-    findUsuarioById,
+    findUsuarioByEmail,
     createUsuario,
     updateUsuario,
     deleteUsuario
@@ -28,21 +28,21 @@ app.post('/login', (req, res) => {
         .catch((error) => res.status(500).json(error))
 })
 
-app.get('/usuarios', verifyToken, (_, res) => {
+app.get('/usuarios/no_existe_aun', verifyToken, (_, res) => {
     findUsuarios()
         .then((events) => res.status(200).json({ events }))
         .catch((error) => res.status(500).json(error))
 })
 
-app.get('/usuarios/:id', verifyToken, (req, res) => {
-    findUsuarioById(req.params.id)
-        .then((events) => res.status(200).json({ events }))
+app.get('/usuarios', verifyToken, (req, res) => {
+    findUsuarioByEmail(req.user.email)
+        .then((user) => res.status(200).json(user))
         .catch((error) => res.status(500).json(error))
-})
+    })
 
-app.post('/usuarios', verifyToken, (req, res) => {
+app.post('/usuarios', (req, res) => {
     createUsuario(req.body)
-        .then((events) => res.status(200).json({ events }))
+        .then((events) => res.status(201).json({ events }))
         .catch((error) => res.status(500).json(error))
 })
 
@@ -58,6 +58,6 @@ app.delete('/usuarios/:id', verifyToken, (req, res) => {
         .catch((error) => res.status(500).json(error))
 })
 
-app.all('*', (_, res) => res.status(404).json({ code: 404, message: 'La ruta no se encuentra en este sistema solar' }))
+app.all('*', (_, res) => res.status(404).json({ code: 404, message: 'La ruta no se encuentra en este sistema solar.' }))
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`))

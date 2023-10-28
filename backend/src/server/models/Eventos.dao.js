@@ -2,7 +2,7 @@ const db = require('../database/db')
 
 const findUsuarios = async () => await db('SELECT * FROM usuarios;')
 
-const findUsuarioById = async (id) => await db('SELECT * FROM usuarios WHERE id = $1;', [id])
+const findUsuarioByEmail = async (email) => await db('SELECT * FROM usuarios WHERE email = $1;', [email])
 
 const createUsuario = async ({ email, password, rol, lenguage }) => {
     const query = 'INSERT INTO usuarios (email, password, rol, lenguage) VALUES ($1, $2, $3, $4) RETURNING *;'
@@ -20,7 +20,7 @@ const deleteUsuario = async (id) => await db('DELETE FROM usuarios WHERE id = $1
 
 module.exports = {
     findUsuarios,
-    findUsuarioById,
+    findUsuarioByEmail,
     createUsuario,
     updateUsuario,
     deleteUsuario
