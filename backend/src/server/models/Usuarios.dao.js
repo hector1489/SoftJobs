@@ -1,9 +1,11 @@
 const db = require('../database/db')
+const { compareSync } = require('../../utils/bcrypt')
 
-const verifyCredentials = async (email, password) => await db('SELECT * FROM usuarios WHERE email = $1 AND password = $2;', [email, password])
+const verifyCredentials = async (email, password) => {
+    const [user] = await db('SELECT * FROM usuarios WHERE email = $1', [email])
+    return compareSync(password, user.password) ? [user] : []
+}
 
 module.exports = {
     verifyCredentials
 }
-
-

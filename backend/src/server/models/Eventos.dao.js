@@ -1,4 +1,5 @@
 const db = require('../database/db')
+const { encrypt } = require('../../utils/bcrypt')
 
 const findUsuarios = async () => await db('SELECT * FROM usuarios;')
 
@@ -6,7 +7,7 @@ const findUsuarioByEmail = async (email) => await db('SELECT * FROM usuarios WHE
 
 const createUsuario = async ({ email, password, rol, lenguage }) => {
     const query = 'INSERT INTO usuarios (email, password, rol, lenguage) VALUES ($1, $2, $3, $4) RETURNING *;'
-    const values = [email, password, rol, lenguage]
+    const values = [email, encrypt(password), rol, lenguage]
     return await db(query, values)
 }
 
